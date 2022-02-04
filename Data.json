@@ -1,0 +1,23 @@
+{
+  "RecordId": "19TR999051",
+  "Forename": "David",
+  "Surname": "TRAININGPATIENT",
+  "DateOfBirth": "1980-04-11",
+  "Address": {
+    "LineOne": "40 Fake Street",
+    "LineTwo": "Fake Way",
+    "LineThree": "Fakesville",
+    "LineFour": "Fakenshire"
+  },
+  "HosptialNo": "TR123456",
+  "NhsNo": "999999999",
+  "Clinician": "Bunce, Colin",
+  "Source": "BA-Test Barnet Test Source",
+  "SampleDate": "2018-05-23",
+  "RequestDate": "2018-05-24",
+  "OrderNo": "TDL999901",
+  "CerebroData": {
+    "RecordId": "19TR999051",
+    "Samples": [ "Breast Core Biopsy, Left", "Breast Core Biopsy, Right" ]
+  }
+}
