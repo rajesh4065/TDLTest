@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TDL.App.Data\TDL.App.Data.csproj" />
+    <ProjectReference Include="..\TDL.Common\TDL.Common.csproj" />
+  </ItemGroup>
+
 </Project>
