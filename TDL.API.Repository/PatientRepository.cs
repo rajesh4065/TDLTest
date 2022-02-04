@@ -53,7 +53,7 @@ namespace TDL.API.Repository
             }
             catch (Exception ex)
             {
-                this._logger.LogError(ex, $"Exception: {nameof(this.GetPatientDetails)}:{ex.Message}");
+                this._logger.LogError(ex, $"Exception: {nameof(this.UpdatePatientDetails)}:{ex.Message}");
                 throw;
             }
         }
