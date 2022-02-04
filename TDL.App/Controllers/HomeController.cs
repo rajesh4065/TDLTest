@@ -20,8 +20,7 @@ namespace TDL.App.Controllers
             this._iPatientAppService = iPatientAppService;
         }
 
-        /// <summary>The index/list of insert sources.</summary>
-        /// <returns>The index view.</returns>
+      
         [HttpGet]
         public async Task<IActionResult> Index()
         {
