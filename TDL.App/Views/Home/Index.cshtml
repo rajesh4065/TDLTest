@@ -1,8 +1,159 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using System.Globalization
+@model TDL.Common.PatientDetailsDto;
+@{ ViewData["Title"] = "Home Page"; }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@if (Model.Status.HasValue)
+{
+@if (Model.Status.Value)
+{
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    the data submitted successfully at  @Model.PatientSubmitDto.LastUpdateDateTime.Value
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div> }
+else
+{
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    Failed to submit
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>}}
+
+@if (Model != null)
+{
+<div class="row">
+    <div class="col-6">
+
+        <div class="card">
+
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <td class="font-weight-bold">Record Id </td>
+                        <td>
+                            @Model.RecordId
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <br />
+        <div class="card">
+            <div class="card-header font-weight-bold">
+                Patient Details
+            </div>
+            <div class="card-body bg-primary">
+                <table class="table table-bordered">
+                    <tbody class="text-white">
+                        <tr>
+                            <td>First Name</td>
+                            <td>@Model.Forename</td>
+                        </tr>
+                        <tr>
+                            <td>Last Name</td>
+                            <td>@Model.Surname</td>
+                        </tr>
+                        <tr>
+                            <td>Date Of Birth</td>
+                            <td>@Model.DateOfBirth</td>
+                        </tr>
+                        <tr>
+                            <td>Age</td>
+                            <td>@(DateTime.Now.Year - DateTime.ParseExact(Model.DateOfBirth, "yyyy-mm-dd", CultureInfo.InstalledUICulture).Year)</td>
+                        </tr>
+                        <tr>
+                            <td>Hosptial No</td>
+                            <td>@Model.HosptialNo</td>
+                        </tr>
+                        <tr>
+                            <td>Nhs No</td>
+                            <td>@Model.NhsNo</td>
+                        </tr>
+                        <tr>
+                            <td>Clinician</td>
+                            <td>@Model.Clinician</td>
+                        </tr>
+                        <tr>
+                            <td>Source</td>
+                            <td>@Model.Source</td>
+                        </tr>
+                        <tr>
+                            <td>Sample Date</td>
+                            <td>@Model.SampleDate</td>
+                        </tr>
+                        <tr>
+                            <td>Request Date</td>
+                            <td>@Model.RequestDate</td>
+                        </tr>
+                        <tr>
+                            <td>Order No</td>
+                            <td>@Model.OrderNo</td>
+                        </tr>
+                        <tr>
+                            <td>Address</td>
+                            <td>
+                                <p>@Model.Address.LineOne</p>
+                                <p>@Model.Address.LineTwo</p>
+                                <p>@Model.Address.LineThree</p>
+                                <p>@Model.Address.LineFour</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <br />
+        <div class="card">
+            <div class="card-header">
+                <h2>Update Reference Data</h2>
+            </div>
+            <div class="card-body">
+
+                <form id="editForm" method="post" asp-controller="Home" asp-action="Index">
+                    <div class="form-group">
+
+                        <input type="hidden" asp-for="PatientSubmitDto.RecordId" name="RecordId" />
+                        <label asp-for="PatientSubmitDto.Conclusion"></label>
+                        <input asp-for="PatientSubmitDto.Conclusion" class="form-control-file" type="text" name="Conclusion" />
+                        <label asp-for="PatientSubmitDto.AuthorisedBy"></label>
+                        <input asp-for="PatientSubmitDto.AuthorisedBy" class="form-control-file" type="text" name="AuthorisedBy" />
+                    </div>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-6">
+        <div class="card">
+            <div class="card-header">
+                Cerebro Data
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <td class="font-weight-bold">Samples</td>
+                        <td>
+                            @if (Model.CerebroData.Samples != null)
+                            {
+                                foreach (var sample in Model.CerebroData.Samples)
+                                {
+            <p>@sample</p> }
+    }
+    else
+    {
+<p>No sample data found</p>}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
 </div>
+                <br />
+}
